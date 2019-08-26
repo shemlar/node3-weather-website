@@ -12,8 +12,13 @@ const forecast = (latitude, longitude, callback) => {
         } else {
             const temperature = body.currently.temperature;
             const precipProbability = body.currently.precipProbability;
-            const summery = body.daily.data[0].summary
-            const forecast = summery+' It is currently '+temperature + ' degrees out. There is a '+precipProbability+'% chance of rain.'
+            const summary = body.daily.data[0].summary
+            const maxTemp = body.daily.data[0].temperatureMax
+            const minTemp = body.daily.data[0].temperatureMin
+            const forecast = summary+
+                ' It is currently '+ temperature + ' degrees out.' +
+                ' There is a '+precipProbability+'% chance of rain.'+
+                'The maximum temperature today will be '+ maxTemp +' and the minimum will be '+minTemp
             callback(undefined, forecast)
         }
     })
